@@ -52,10 +52,13 @@ def resolve_path(filename: str, session_dir: Optional[str] = None) -> str:
 
     # 2. 特殊处理：upload/ (用户上传文件)
     # 只要路径中包含 upload/，就提取其后半部分，并相对于 CWD 解析
+    # PROJECT_ROOT:项目根目录
+    PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
     if "upload/" in path_str:
         idx = path_str.find("upload/")
         relative_part = path_str[idx:]
-        return str(Path(relative_part).resolve())
+        return str(PROJECT_ROOT / relative_part)
 
     if not session_dir:
         return str(path.resolve())
@@ -107,3 +110,23 @@ def resolve_path(filename: str, session_dir: Optional[str] = None) -> str:
 
         # 默认：拼接到 session_dir
         return str(session_path / path)
+
+if __name__ == "__main__":
+    # 会话目录
+    session = "D:/Project/output/session_abc"
+
+    # 示例1：虚拟路径清洗
+    print(resolve_path("/workspace/报告.md", session))
+    # D:\Project\output\session_abc\报告.md
+
+    # 示例2：上传文件
+    print(resolve_path("upload/药品.pdf", session))
+    # D:\Project\upload\药品.pdf
+
+    # 示例3：嵌套路径
+    print(resolve_path("output/session_abc/session_abc/数据.md", session))
+    # D:\Project\output\session_abc\数据.md
+
+    # 示例4：普通相对路径
+    print(resolve_path("分析结果.md", session))
+    # D:\Project\output\session_abc\分析结果.md
