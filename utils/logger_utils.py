@@ -27,6 +27,17 @@ handler.setFormatter(colorlog.ColoredFormatter(
 logger.addHandler(handler)
 
 
+def configure_project_logging():
+    """
+    项目日志初始化入口（幂等）。
+
+    在 main.py 启动入口调用，确保无论以何种方式启动服务，
+    全局 logger 都已配置完成。当前 logger 在模块导入时已初始化，
+    此函数作为显式入口，避免在多个模块中重复初始化逻辑。
+    """
+    return logger
+
+
 if __name__ == '__main__':
     logger.debug("工具开始执行")  # 青色
     logger.info("会话目录创建成功")  # 绿色
