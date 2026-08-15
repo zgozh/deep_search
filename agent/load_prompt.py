@@ -14,7 +14,8 @@ _yaml_dict = load_yaml(_yaml_path)
 main_config = _yaml_dict['main_agent']
 sub_agents_config = _yaml_dict['sub_agents']
 
+
 if __name__ == "__main__":
-    print(f"主智能体配置:{main_config}")
-    print(f"子智能体配置:{sub_agents_config}")
+    print(f"主智能体配置: {main_config}")
+    print(f"子智能体配置: {sub_agents_config}")
 

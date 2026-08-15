@@ -52,29 +52,10 @@ def generate_markdown(
         logger.error(f"[MarkdownTool] Error writing file: {e}")
         return f"生成Markdown文件失败: {str(e)}"
 
-# -------------------------- 测试代码（仅修改这里，给session_dir配置固定值） --------------------------
+
 if __name__ == "__main__":
-    # ========== 核心：覆盖get_session_context的返回值（仅测试时生效） ==========
-    # 不用Mock，直接重新定义这个函数，给session_dir赋值！
-    def get_session_context():
-        """测试专用：给session_dir配置固定初始化值"""
-        return "./test_session_123"  # 你要的session_dir初始化值，随便改
-
-    # ========== 极简测试逻辑（只传path/filename，session_dir已初始化） ==========
-    test_content = "# 测试文档\n这是给session_dir配置固定值后的测试内容"
-    test_filename = "测试文件2"  # 无.md后缀，测试自动补全
-    test_path = "sub_dir"       # 相对路径
-
-    # 调用生成函数
-    print("===== 开始测试（session_dir已配置为：./test_session_123） =====")
-    result = generate_markdown.invoke({
-        "content": test_content,
-        "filename": test_filename,
-        "path": test_path
-    })
-
-    # 验证结果
-    print(f"\n调用结果：{result}")
-    if "已成功生成" in result:
-        file_path = Path(result.split("'")[1])
-        print(f"✅ 验证：文件 {file_path} {'存在' if file_path.exists() else '不存在'}")
+    print(generate_markdown.invoke({
+        "content": "# 示例文档\n\n这是自测内容。",
+        "filename": "示例",
+        "path": "",
+    }))

@@ -1,1 +1,18 @@
 .env
+
+# 学习资料目录
+文档/
+
+# Python 运行产物
+__pycache__/
+*.py[cod]
+
+# 运行时生成目录
+output/
+upload/
+tools/test_session_123/
+
+# IDE 与编辑器
+.idea/
+.vscode/
+*.iml

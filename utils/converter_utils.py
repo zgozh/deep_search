@@ -13,7 +13,7 @@ def convert_md_to_pdf_via_word(md_abs_path: Path, pdf_abs_path: Path) -> str:
     word_app = None
 
     try:
-        # 1. MD 转 HTML
+        # Markdown 转 HTML，再交给 Word 打开
         with open(md_abs_path, 'r', encoding='utf-8') as f:
             md_content = f.read()
 
@@ -39,7 +39,7 @@ def convert_md_to_pdf_via_word(md_abs_path: Path, pdf_abs_path: Path) -> str:
         with open(temp_html_path, 'w', encoding='utf-8') as f:
             f.write(html_content)
 
-        # 2. 调用 Word COM
+        # 调用 Word COM 打开 HTML 并另存为 PDF
         pythoncom.CoInitialize()
         word_app = win32com.client.Dispatch('Word.Application')
         word_app.Visible = False
@@ -60,7 +60,7 @@ def convert_md_to_pdf_via_word(md_abs_path: Path, pdf_abs_path: Path) -> str:
         logger.error(f"Word转换PDF失败: {e}", exc_info=True)
         return f"转换失败: {str(e)}"
     finally:
-        # 3. 资源清理
+        # 清理 Word 进程、临时 HTML 与 COM 环境
         if word_app:
             try:
                 word_app.Quit()

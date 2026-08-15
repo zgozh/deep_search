@@ -39,8 +39,7 @@ def configure_project_logging():
 
 
 if __name__ == '__main__':
-    logger.debug("工具开始执行")  # 青色
-    logger.info("会话目录创建成功")  # 绿色
-    logger.warning("文件路径存在风险")  # 黄色
-    logger.error("WebSocket推送失败")  # 红色
-    logger.critical("数据库连接崩溃")  # 加粗红色
+    logger.debug("debug 日志")
+    logger.info("info 日志")
+    logger.warning("warning 日志")
+    logger.error("error 日志")
