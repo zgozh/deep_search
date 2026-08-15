@@ -384,6 +384,6 @@ A：确认后端 `python main.py` 已在 `http://localhost:8000` 启动，且前
 
 ## 说明
 
-- `.env` 存放敏感配置，已被 `.gitignore` 排除，请勿提交到仓库。
+- `.env` 存放敏感配置，已被 `.gitignore` 排除，仓库为example模板，应自己根据模板生成一份`.env`。
 - RAGFlow SDK 请固定使用 `0.24.0` 版本（`pyproject.toml` 中已锁定），高版本存在兼容性问题。
 - `output/`、`upload/` 为运行时生成目录，已被 `.gitignore` 排除。
