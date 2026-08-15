@@ -4,6 +4,8 @@ import uuid
 from pathlib import Path
 from typing import List, Optional
 
+import uvicorn
+
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
